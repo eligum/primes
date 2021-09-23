@@ -1,17 +1,6 @@
 /*!
 A basic library for working with prime numbers.
 
-The simplest usage is simply to create an `Iterator`:
-
-```
-use primes::{TrialDivision, PrimeSet};
-
-let mut pset = TrialDivision::new();
-
-for (ix, n) in pset.iter().enumerate().take(10) {
-	println!("Prime {}: {}", ix, n);
-}
-```
 This library provides methods for generating primes, testing whether a number is prime, and
 factorizing numbers. Most methods generate primes lazily, so only enough primes will be generated
 for the given test, and primes are cached for later use.
