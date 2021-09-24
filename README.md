@@ -5,9 +5,9 @@ This package provides an iterator over `all` primes, generating them lazily as t
 The simplest usage is to create an `Iterator`:
 
 ```Rust
-use primes::PrimeSet;
+use primes::TrialDivision;
 
-let mut pset = PrimeSet::new();
+let mut pset = TrialDivision::new();
 
 for (idx, n) in pset.iter().enumerate().take(10) {
 	println!("Prime #{}: {}", idx, n);
