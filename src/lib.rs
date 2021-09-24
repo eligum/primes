@@ -152,6 +152,9 @@ pub trait PrimeSet: PrimeSetBasics + Sized {
 	}
 }
 
+// This line implements `PrimeSet` trait for all types in scope that implement `PrimeSetBasics`.
+impl<P: PrimeSetBasics> PrimeSet for P {}
+
 impl Index<usize> for TrialDivision {
 	type Output = u64;
 	fn index(&self, index: usize) -> &u64 {
