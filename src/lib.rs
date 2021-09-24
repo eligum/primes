@@ -150,6 +150,30 @@ pub trait PrimeSet: PrimeSetBasics + Sized {
 		}
 		self.list()[index]
 	}
+
+	// Get the prime factors of a number, starting from 2, including repeats. This method will
+	// expand the prime number pool as they are needed.
+	fn prime_factors(&mut self, n: u64) -> Vec<u64> {
+		if n == 1 {
+			return Vec::new();
+		}
+		let mut curn = n;
+		let mut lst: Vec<u64> = Vec::new();
+		for p in self.iter() {
+			while curn % p == 0 {
+				lst.push(p);
+				curn /= p;
+				if curn == 1 {
+					return lst;
+				}
+				if p * p > curn {
+					lst.push(curn);
+					return lst;
+				}
+			}
+		}
+		unreachable!("This should be unreachable.");
+	}
 }
 
 // This line implements `PrimeSet` trait for all types in scope that implement `PrimeSetBasics`.
