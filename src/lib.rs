@@ -217,6 +217,28 @@ fn firstfac(x: u64) -> u64 {
 	x
 }
 
+/// Find all prime factors of a number. Different implementation.
+pub fn factors_v2(mut n: u64) -> Vec<u64> {
+    let mut factors = Vec::new();
+    let mut candidates = vec![2u64];
+    candidates.extend((3..).step_by(2).take_while(|x| x * x <= n));
+    let mut candidates = candidates.into_iter();
+
+    while n > 1 {
+        if let Some(x) = candidates.next() {
+            while n % x == 0 {
+                n /= x;
+                factors.push(x);
+            }
+        } else {
+            factors.push(n);
+            break;
+        }
+    }
+
+    factors
+}
+
 /// Find all prime factors of a number.
 pub fn factors(mut x: u64) -> Vec<u64> {
 	if x <= 1 {
